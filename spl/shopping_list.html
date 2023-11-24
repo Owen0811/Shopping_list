@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物清單</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #shopping-list-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        #output-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>購物清單</h1>
+</header>
+
+<div id="shopping-list-container">
+    <h2>購物選項:</h2>
+    <button onclick="showShoppingList()">查看購物清單</button>
+    <button onclick="addItem()">添加商品</button>
+    <button onclick="removeItem()">移除商品</button>
+    <button onclick="clearList()">清空購物清單</button>
+</div>
+
+<div id="output-container"></div>
+
+<script>
+    var shoppingList = [];
+
+    function showShoppingList() {
+        var outputContainer = document.getElementById("output-container");
+        if (shoppingList.length === 0) {
+            outputContainer.innerHTML = "<p>購物清單是空的。</p>";
+        } else {
+            outputContainer.innerHTML = "<p>購物清單:</p><ul>";
+            for (var i = 0; i < shoppingList.length; i++) {
+                outputContainer.innerHTML += "<li>" + shoppingList[i] + "</li>";
+            }
+            outputContainer.innerHTML += "</ul>";
+        }
+    }
+
+    function addItem() {
+        var item = prompt("請輸入要添加的商品:");
+        if (item !== null) {
+            shoppingList.push(item);
+            alert("商品 " + item + " 已經添加到購物清單。");
+        }
+    }
+
+    function removeItem() {
+        if (shoppingList.length === 0) {
+            alert("購物清單是空的，無法移除商品。");
+        } else {
+            var itemToRemove = prompt("請輸入要移除的商品:");
+            var index = shoppingList.indexOf(itemToRemove);
+            if (index !== -1) {
+                shoppingList.splice(index, 1);
+                alert("商品 " + itemToRemove + " 已經從購物清單移除。");
+            } else {
+                alert("購物清單中沒有該商品。");
+            }
+        }
+    }
+
+    function clearList() {
+        shoppingList = [];
+        alert("購物清單已清空。");
+    }
+</script>
+
+</body>
+</html>
